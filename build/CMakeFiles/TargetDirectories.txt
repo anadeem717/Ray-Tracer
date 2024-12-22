@@ -1,0 +1,3 @@
+C:/Users/arees/source/repos/Ray-Tracer/build/CMakeFiles/Ray-Tracer.dir
+C:/Users/arees/source/repos/Ray-Tracer/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/arees/source/repos/Ray-Tracer/build/CMakeFiles/ZERO_CHECK.dir
