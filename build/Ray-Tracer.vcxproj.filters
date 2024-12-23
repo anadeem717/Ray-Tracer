@@ -6,9 +6,20 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="C:\Users\arees\source\repos\Ray-Tracer\HeaderFiles\vec3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\arees\source\repos\Ray-Tracer\HeaderFiles\color.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
     <CustomBuild Include="C:\Users\arees\source\repos\Ray-Tracer\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{8E133047-D0DB-39BE-B999-796DEF1FCBF4}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source Files">
       <UniqueIdentifier>{1694DAF1-5378-3F00-B986-AC5B1A411C04}</UniqueIdentifier>
     </Filter>
