@@ -3,51 +3,52 @@
 #include <cmath>
 #include <iostream>
 
+// vec3 class can be used for colors, coordinates, directions, etc. 
 class vec3 {
 
 public:
-	double pos[3];
+	double vals[3];
 
 	// Constructors
 	vec3() {
-		pos[0] = 0;
-		pos[1] = 0;
-		pos[2] = 0;
+		vals[0] = 0;
+		vals[1] = 0;
+		vals[2] = 0;
 	}
 
 	vec3(double pos0, double pos1, double pos2) {
-		pos[0] = pos0;
-		pos[1] = pos1;
-		pos[2] = pos2; 
+		vals[0] = pos0;
+		vals[1] = pos1;
+		vals[2] = pos2; 
 	}
 
 
 	// funcs to return x,y,z positions
-	double x() const { return pos[0]; }
-	double y() const { return pos[1]; }
-	double z() const { return pos[2]; }
+	double x() const { return vals[0]; }
+	double y() const { return vals[1]; }
+	double z() const { return vals[2]; }
 
 
 	// --------------overloaded operators---------------
 
-	vec3 operator-() const { return vec3(-pos[0], -pos[1], -pos[2]); }
+	vec3 operator-() const { return vec3(-vals[0], -vals[1], -vals[2]); }
 	
-	double operator[] (int i) const { return pos[i];  }
+	double operator[] (int i) const { return vals[i];  }
 	
 	// Allowing read/write access for pos at index i
-	double& operator[] (int i) { return pos[i]; }
-
+	double& operator[] (int i) { return vals[i]; }
+	 
 	vec3& operator+= (const vec3& v) {
-		pos[0] += v.pos[0];
-		pos[1] += v.pos[1];
-		pos[2] += v.pos[2];
+		vals[0] += v.vals[0];
+		vals[1] += v.vals[1];
+		vals[2] += v.vals[2];
 		return *this;
 	}
 
 	vec3& operator*= (double t) {
-		pos[0] *= t;
-		pos[1] *= t;
-		pos[2] *= t;
+		vals[0] *= t;
+		vals[1] *= t;
+		vals[2] *= t;
 		return *this;
 	}
 
@@ -56,7 +57,7 @@ public:
 	}
 
 	double length_squared() const {
-		return (pos[0] * pos[0] + pos[1] * pos[1] + pos[2] * pos[2]);
+		return (vals[0] * vals[0] + vals[1] * vals[1] + vals[2] * vals[2]);
 	}
 
 	double length() const {
@@ -64,8 +65,53 @@ public:
 	}
 
 
-
-
-
-
 };
+
+// -----------Utility Functions-------------
+
+
+inline std::ostream& operator<<(std::ostream& out, const vec3& v) {
+	return out << v.vals[0] << ' ' << v.vals[1] << ' ' << v.vals[2];
+}
+
+inline vec3 operator+(const vec3& u, const vec3& v) {
+	return vec3(u.vals[0] + v.vals[0], u.vals[1] + v.vals[1], u.vals[2] + v.vals[2]);
+}
+
+inline vec3 operator-(const vec3& u, const vec3& v) {
+	return vec3(u.vals[0] - v.vals[0], u.vals[1] - v.vals[1], u.vals[2] - v.vals[2]);
+}
+
+inline vec3 operator*(const vec3& u, const vec3& v) {
+	return vec3(u.vals[0] * v.vals[0], u.vals[1] * v.vals[1], u.vals[2] * v.vals[2]);
+}
+
+inline vec3 operator*(double t, const vec3& v) {
+	return vec3(t * v.vals[0], t * v.vals[1], t * v.vals[2]);
+}
+
+inline vec3 operator*(const vec3& v, double t) {
+	return t * v;
+}
+
+inline vec3 operator/(const vec3& v, double t) {
+	return (1 / t) * v;
+}
+
+// the dot product of 2 vectors
+inline double dot(const vec3& u, const vec3& v) {
+	return u.vals[0] * v.vals[0]
+		+ u.vals[1] * v.vals[1]
+		+ u.vals[2] * v.vals[2];
+}
+
+// the cross product of 2 vectors
+inline vec3 cross(const vec3& u, const vec3& v) {
+	return vec3(u.vals[1] * v.vals[2] - u.vals[2] * v.vals[1],
+				u.vals[2] * v.vals[0] - u.vals[0] * v.vals[2],
+				u.vals[0] * v.vals[1] - u.vals[1] * v.vals[0]);
+}
+
+inline vec3 unit_vector(const vec3& v) {
+	return v / v.length();
+}
